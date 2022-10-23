@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { calcCalories, updateState } from '../store/userInfoSlice'
+import { calcCalories, calcMacros, updateState } from '../store/userInfoSlice'
 
 const Info = () => {
 
@@ -59,7 +59,8 @@ const Info = () => {
 
     const handleSubmit = (e) => {
         dispatch(updateState( { name, age, gender, feet, inches,  weight, activity } ))
-        dispatch(calcCalories('hello'))
+        dispatch(calcCalories())
+        dispatch(calcMacros())
     }
     
 
@@ -218,7 +219,7 @@ const Info = () => {
 
                 {
                     index === 6
-                    ? <Link to = '/dashboard' 
+                    ? <Link to = '/' 
                         onClick = {handleSubmit}
                         type = 'button'
                         className = 'bg-white rounded-lg text-center py-2 px-5 w-full text-black hover:bg-red-500 hover:text-white'>

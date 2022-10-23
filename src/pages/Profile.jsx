@@ -8,6 +8,7 @@ const Profile = () => {
   return (
     //Profile card
      <div className = 'bg-red-50 rounded-md  text-black overflow-hidden'>
+
       {/* header */}
       <div className = 'flex items-center justify-between p-2'>
         <div className = 'flex items-center gap-6'>

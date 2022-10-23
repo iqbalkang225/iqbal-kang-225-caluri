@@ -20,7 +20,6 @@ export const fetchMeals = createAsyncThunk('fetch-meals',
 
   export const fetchMeal = createAsyncThunk('fetch-meal',
   async (mealID, thunkAPI) => {
-    console.log('yes')
     try {
         const res = await fetch(searchById(mealID), options)
         const data =  await res.json()
@@ -51,7 +50,6 @@ const fetchedMealsSlice = createSlice({
     },
     [fetchMeal.fulfilled]: (state,action) => {
       state.isLoading = false
-      console.log(action)
       state.fetchedMeal = action.payload
     },
     [fetchMeal.rejected]: (state,action) => {

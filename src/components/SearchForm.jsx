@@ -8,7 +8,6 @@ const SearchForm = ( {initial, animate } ) => {
 
   const dispatch = useDispatch()
   const [enteredMeal, setEnteredMeal] = useState('')
-  const [selectedMeal, setSelectedMeal] = useState([])
   const onChangeHandler = (e) => setEnteredMeal(e.target.value)
 
   const onSubmitHandler = (e) => {

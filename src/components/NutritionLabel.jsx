@@ -1,12 +1,14 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
-const NutritionLabel = () => {
+const NutritionLabel = ( {numOfServings, slice, type} ) => {
 
-  const dispatch = useDispatch()
-  const {servings: {number, size, unit}, nutrition} = useSelector(store => store.fetchedMealsSlice.fetchedMeal)
+  const {servings: {number, size, unit}, nutrition} = useSelector(store => store[slice][type])
+
   const { nutrients, calories } = nutrition
+
+  if(!nutrients) return
+  if(!calories) return
 
   return (
     <div className='text-xs p-4'>
@@ -19,70 +21,84 @@ const NutritionLabel = () => {
       <p className=' font-bold'>Amount per serving</p>
       <div className='flex justify-between font-bold text-4xl border-b-8 border-black'>
         <p>Calories</p>
-        <p>90</p>
+        <p> {calories * numOfServings} </p>
       </div>
       <div className='flex justify-between py-2'>
         <p></p>
         <p className='font-extrabold '>% Daily Value *</p>
       </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p> <span className='font-bold'>Total Fat</span>  0g</p>
-        <p className='font-bold'> 10% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p className='ml-8'> Saturated Fat 5g</p>
-        <p className='font-bold'> 1% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p className='ml-8'> Trans Fat 2g</p>
-        <p className='font-bold'> 4% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p> <span className='font-bold'>Cholesterol</span>  0mg</p>
-        <p className='font-bold'> 7% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p> <span className='font-bold'>Sodium</span>  15mg</p>
-        <p className='font-bold'> 9% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p> <span className='font-bold'>Total Carbohydrate</span>  50g</p>
-        <p className='font-bold'> 40% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p className='ml-8'> Dietary Fiber 2g</p>
-        <p className='font-bold'> 12% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p className='ml-8'> Total Sugars 20g</p>
-        <p className='font-bold'> 8% </p>
-      </div>
-      <div className = 'flex justify-between  border-t-2 py-1'>
-        <p className='ml-12'> Includes 0g added sugar</p>
-        <p className='font-bold'> 4% </p>
-      </div>
-      <div className = 'flex justify-between border-t-2 py-1 border-b-[14px] border-b-black'>
-        <p> <span className='font-bold'>Protein</span>  50g</p>
-        <p className='font-bold'> 40% </p>
-      </div>
-      <div className = 'flex justify-between border-b-2 py-1'>
-        <p> Vitamin D 0mcg</p>
-        <p className='font-bold'> 0% </p>
-      </div>
-      <div className = 'flex justify-between border-b-2 py-1'>
-        <p> Calcium 0mg</p>
-        <p className='font-bold'> 0% </p>
-      </div>
-      <div className = 'flex justify-between border-b-2 py-1'>
-        <p> Iron 0mg</p>
-        <p className='font-bold'> 0% </p>
-      </div>
-      <div className = 'flex justify-between border-b-2 py-1'>
-        <p> Potassium 0mg</p>
-        <p className='font-bold'> 0% </p>
-      </div>
+
+      {
+        nutrients.map((nutrient, index) => {
+          if(nutrient.name === 'Calories') return
+          const { name, amount, unit, percentOfDailyNeeds } = nutrient
+          return (
+            <div key = {index} className = 'flex justify-between  border-t-2 py-1'>
+              <p> 
+                <span 
+                  className={`font-bold ${nutrient.name === 'Saturated Fat' && 'ml-6'} ${nutrient.name === 'Trans Fat' && 'ml-6'}`}> 
+                    {name} </span> {amount * numOfServings}{unit}</p>
+              <p className='font-bold'> {percentOfDailyNeeds}% </p>
+            </div>
+          )
+        })
+      }
+
     </div>
   )
 }
 
 export default NutritionLabel
+
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p> <span className='font-bold'>Total Fat</span>  {nutrients[4].amount}g</p>
+// <p className='font-bold'> {nutrients[4].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p className='ml-8'> Saturated Fat {nutrients[5].amount}g</p>
+// <p className='font-bold'> {nutrients[5].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p className='ml-8'> Trans Fat {nutrients[5].amount}g</p>
+// <p className='font-bold'> {nutrients[6].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p> <span className='font-bold'>Cholesterol</span>  {nutrients[2].amount}mg</p>
+// <p className='font-bold'> {nutrients[2].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p> <span className='font-bold'>Sodium</span>  {nutrients[10].amount}mg</p>
+// <p className='font-bold'> {nutrients[10].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p> <span className='font-bold'>Total Carbohydrate</span>  {nutrients[1].amount}g</p>
+// <p className='font-bold'> {nutrients[1].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p className='ml-8'> Dietary Fiber {nutrients[7].amount}g</p>
+// <p className='font-bold'> {nutrients[7].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between  border-t-2 py-1'>
+// <p className='ml-8'> Total Sugars {nutrients[11].amount}g</p>
+// <p className='font-bold'> {nutrients[11].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between border-t-2 py-1 border-b-[14px] border-b-black'>
+// <p> <span className='font-bold'>Protein</span>  {nutrients[9].amount}g</p>
+// <p className='font-bold'> {nutrients[9].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between border-b-2 py-1'>
+// <p> Vitamin A {nutrients[12].amount}IU</p>
+// <p className='font-bold'> {nutrients[12].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between border-b-2 py-1'>
+// <p> Vitamin C {nutrients[13].amount}mg</p>
+// <p className='font-bold'> {nutrients[13].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between border-b-2 py-1'>
+// <p> Calcium {nutrients[0].amount}mg</p>
+// <p className='font-bold'> {nutrients[0].percentOfDailyNeeds}% </p>
+// </div>
+// <div className = 'flex justify-between border-b-2 py-1'>
+// <p> Iron {nutrients[8].amount}mg</p>
+// <p className='font-bold'> {nutrients[8].percentOfDailyNeeds}% </p>
+// </div>

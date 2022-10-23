@@ -1,45 +1,10 @@
 import React from 'react'
 import Chart from "react-apexcharts"
+import { useSelector } from 'react-redux';
 
 const RadialChart = () => {
-     
-      // const series = [50]
-
-      // var options = {        
-      //   plotOptions: {
-      //     radialBar: { 
-      //       dataLabels: {
-      //         name: {
-      //           show: false,
-      //           color: "#fff",
-      //           fontSize: "16px",
-      //           offsetY: 5,
-      //         },
-      //         value: {
-      //           show: true,
-      //           color: "#000",
-      //           fontSize: "16px",
-      //           offsetY: 5,
-      //         }
-      //       }
-      //     }
-      //   },
-      //   track: {
-      //     background: '#000',
-      //     strokeWidth: '100%',
-      //   },
-
-      
-      //   stroke: {
-      //     lineCap: "round",
-      //   },
-      //   // labels: [2600]
-      // };
 
       const options = {
-      
-      
-        series: [67],
         plotOptions: {
           radialBar: {
             track: {
@@ -69,11 +34,18 @@ const RadialChart = () => {
         },
         // labels: ["Progress"]
       };
+      const { caloriesRequired } = useSelector(store => store.userInfoSlice)
+      const { totalCalories } = useSelector(store => store.storedMealsSlice.caloriesEaten)
+
+      const remainingCaloriesPercentage = () => {
+        if(((totalCalories / caloriesRequired) * 100).toFixed() === 'NaN') return 0
+        return ((totalCalories / caloriesRequired) * 100).toFixed()
+      }
 
       return (
         <Chart
         options={options}
-        series= {[30]}
+        series= {[remainingCaloriesPercentage()]}
         type="radialBar"
         width='200'
       />

@@ -19,3 +19,10 @@
 .link.active > :first-child {
   transform: translateY(-0.4rem) scale(1.6);
 }
+
+.breakfast { background-color: #EBB305 }
+.snack-1 { background-color: #F77316 }
+.lunch { background-color: #22C55D }
+.snack-2 { background-color: #044389 }
+.dinner { background-color: #D30C7B }
+.snack-3 { background-color: #662E9B }

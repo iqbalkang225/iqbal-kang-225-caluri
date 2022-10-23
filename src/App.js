@@ -9,6 +9,10 @@ import Home from './pages/Home';
 import Nutrition from './pages/Nutrition';
 import Profile from './pages/Profile';
 import AddMeal from './pages/AddMeal';
+import Calories from './pages/Calories';
+import Nutrients from './pages/Nutrients';
+import Macros from './pages/Macros';
+import EditMeal from './pages/EditMeal';
 
 function App() {
   return (
@@ -23,10 +27,15 @@ function App() {
           <Route path = '/' element = { <Home /> }>
             <Route index element = { <Dashboard /> } />
             <Route path = 'diary' element = { <Diary /> } />
-            <Route path = 'nutrition' element = { <Nutrition /> } />
+            <Route path = 'edit' element = { <EditMeal /> } />
             <Route path = 'profile' element = { <Profile /> } />
             <Route path = 'search' element = { <Search /> } />
             <Route path = 'search/:id' element = { <AddMeal /> } />
+            <Route path = 'nutrition' element = { <Nutrition /> }>
+              <Route index element = { <Calories /> } />
+              <Route path = 'nutrients' element = { <Nutrients /> } />
+              <Route path = 'macros' element = { <Macros /> } />
+            </Route>
           </Route>
         </Routes>
 

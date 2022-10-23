@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AiFillFlag, AiFillFire } from 'react-icons/ai'
 import { ImSpoonKnife } from 'react-icons/im'
 import SearchForm from '../components/SearchForm'
@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux'
 import RadialChart from '../components/RadialChart'
 
 const Dashboard = () => {
-
   const { caloriesRequired } = useSelector(store => store.userInfoSlice)
+  const { totalCalories } = useSelector(store => store.storedMealsSlice.caloriesEaten)
   
   return (
     <div className="h-full w-full text-black font-poppins flex flex-col justify-between">
@@ -35,7 +35,7 @@ const Dashboard = () => {
               <ImSpoonKnife size = '24' className = 'text-red-500' />
                 <div>
                 <h3 className = 'text-xs'>Food</h3>
-                <p className = 'text-xs font-bold'>0</p>
+                <p className = 'text-xs font-bold'> {totalCalories} </p>
               </div>
             </div>
 
@@ -46,7 +46,6 @@ const Dashboard = () => {
                 <p className = 'text-xs font-bold'>0</p>
               </div>
             </div>
-
             
           </div>
 

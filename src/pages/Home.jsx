@@ -4,7 +4,7 @@ import DashboardNav from '../components/DashboardNav'
 
 const Home = () => {
   return (
-    <div className = 'flex flex-col h-[calc(100vh-80px)] w-[90%] mx-auto justify-between'>
+    <div className = 'flex flex-col h-[calc(100vh-80px)] w-[90%] mx-auto justify-between font-poppins'>
       <Outlet />
       <DashboardNav />
     </div>

@@ -1,17 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  caloriesRequired: 0,
-  BMR: 0
+const recommendedNutrientsIntake = {
+  protein: 0,
+  carbohydrates: 0,
+  fiber: 38,
+  sugar: 50,
+  fat: 0,
+  saturatedFat: 20,
+  transFat: 0,
+  cholesterol: 300,
+  calcium: 100,
+  sodium : 2300,
+  magnesium: 400,
+  potassium: 3500
 }
 
+const initialState = {
+  caloriesRequired: 0,
+  BMR: 0,
+  recommendedNutrientsIntake
+}
+
+
 const userInfoSlice = createSlice({
-  name: 'calculate-calories',
+  name: 'user-info',
   initialState,
   reducers: {
     updateState (state,action) {
       return {
-        ...action.payload
+        ...state, ...action.payload
       }
 
     },
@@ -31,9 +48,15 @@ const userInfoSlice = createSlice({
         state.caloriesRequired = (Number(BMR) * Number(activity)).toFixed(0)
         state.BMR = Number(BMR)
       }   
+    },
+
+    calcMacros(state) {
+      state.recommendedNutrientsIntake.protein = (((30 * state.caloriesRequired) / 100) / 4).toFixed()
+      state.recommendedNutrientsIntake.fat = (((30 * state.caloriesRequired) / 100) / 9).toFixed()
+      state.recommendedNutrientsIntake.carbohydrates = (((40 * state.caloriesRequired) / 100) / 4).toFixed()
     }
   }
 })
 
-export const { updateState, calcCalories } = userInfoSlice.actions
+export const { updateState, calcCalories, calcMacros } = userInfoSlice.actions
 export default userInfoSlice.reducer

@@ -3,54 +3,59 @@ import { Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const data = {
-  labels: ['Carbs', 'Fat', 'Protein'],
-  datasets: [{
-    data: ['34', '40', '26'],
-    backgroundColor: ['#e9b306', '#f97315', '#22c55d'],
-    borderWidth: '0',
-    cutout: '85%'
-  }]
-}
+const DoughnutChart = ( props ) => {
 
-const options = {
-  plugins: {
-    legend: {
-      display: false
+  const deleteMacroUnit = (macro) => macro?.slice(0, -1)
+
+  const carbs = deleteMacroUnit(props.carbs)
+  const fat = deleteMacroUnit(props.fat)
+  const protein = deleteMacroUnit(props.protein)
+
+  const data = {
+    labels: ['Carbs', 'Fat', 'Protein'],
+    datasets: [{
+      data: [carbs, fat, protein],
+      backgroundColor: ['#e9b306', '#f97315', '#22c55d'],
+      borderWidth: '0',
+      cutout: '75%'
+    }]
+  }
+  
+  const options = {
+    plugins: {
+      legend: {
+        display: false
+      }
     }
   }
-}
-
-
-const plugins = [{
-  id : 'doughnut',
-  beforeDraw: function(chart) {
-   let width = chart.width,
-       height = chart.height,
-       ctx = chart.ctx;
-       ctx.restore();
-       let fontSize = (height / 160).toFixed(2);
-       ctx.font = fontSize + "em sans-serif";
-       ctx.textBaseline = "top";
-       let text = "Foo-bar",
-       textX = Math.round((width - ctx.measureText(text).width) / 2),
-       textY = height / 2;
-       ctx.fillText(text, textX, textY);
-       ctx.save();
-  } 
- }]
-
-const DoughnutChart = () => {
+  
+  // const plugins = [{
+  //   id : 'doughnut',
+  //   beforeDraw: function(chart) {
+  //    let width = chart.width,
+  //        height = chart.height,
+  //        ctx = chart.ctx;
+  //        ctx.restore();
+  //        ctx.fontSize = '20'
+  //        let fontSize = (height).toFixed(2);
+  //        ctx.font = fontSize + "em sans-serif";
+  //       ctx.fontSize = 70;
+  //        ctx.textBaseline = "top";
+  //        let text = props.calories,
+  //        textX = Math.round((width - ctx.measureText(text).width) / 2),
+  //        textY = height / 2;
+  //        ctx.fillText(text, textX, textY);
+  //        ctx.save();
+  //   } 
+  //  }]
 
   return (
-    <div className='w-24 h-24'>
       <Doughnut 
         data = {data}
         type = "doughnut" 
         options = {options}
-        plugins = {plugins} 
+        // plugins = {plugins} 
       />
-    </div>
   )
 }
 
