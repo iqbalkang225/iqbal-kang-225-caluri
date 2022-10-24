@@ -20,8 +20,10 @@ const AddMeal = () => {
   }, [] )
 
   const navigate = useNavigate()
+
+  const { mealType } = useSelector(store => store.storedMealsSlice)
   
-  const [mealInfo, setMealInfo] = useState( {'meal-type': '', numOfServings: 1} )
+  const [mealInfo, setMealInfo] = useState( {'meal-type': mealType, numOfServings: 1} )
 
   const macroTotal = (macro) => (Number(macro?.slice(0, -1)) || 0) * mealInfo.numOfServings
 

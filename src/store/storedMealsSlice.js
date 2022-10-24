@@ -4,7 +4,8 @@ const initialState = {
   storedMeals: [],
   caloriesEaten: {
     totalCalories: 0,
-  }
+  },
+  mealType: ''
 }
 
 const storedMealsSlice = createSlice({
@@ -35,11 +36,15 @@ const storedMealsSlice = createSlice({
     editMeal(state,action) {
       const mealIndex = state.storedMeals.findIndex(meal => meal.id === action.payload.id )
       state.storedMeals[mealIndex] = action.payload
+    },
+
+    setMealType(state,action) {
+      state.mealType = action.payload
     }
   }
 })
 
 
-export const { addMeal, addMealTypeCalories, deleteMeal, updateCaloriesEaten, mealToEdit, editMeal } = storedMealsSlice.actions
+export const { addMeal, addMealTypeCalories, deleteMeal, updateCaloriesEaten, mealToEdit, editMeal, setMealType } = storedMealsSlice.actions
 
 export default storedMealsSlice.reducer

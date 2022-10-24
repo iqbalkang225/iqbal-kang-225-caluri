@@ -38,7 +38,7 @@ const Search = () => {
                     to = {`${meal.id}`}
                     className = 'flex gap-3 items-center bg-white rounded-md p-1 text-black'>
                     <img src = {meal.image} className = 'h-12 w-12 rounded-full' />
-                    <p className = 'text-xs'> {meal.title} </p>
+                    <p className = 'text-xs'> {meal.title.slice(0,40)}... </p>
                   </Link>
               </motion.div>
             )

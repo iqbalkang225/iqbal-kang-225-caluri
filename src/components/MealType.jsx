@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMealTypeCalories, deleteMeal, mealToEdit, updateCaloriesEaten } from '../store/storedMealsSlice'
+import { addMealTypeCalories, deleteMeal, mealToEdit, setMealType, updateCaloriesEaten } from '../store/storedMealsSlice'
 import { formatTitle } from '../utilities/utilFunctions'
 import { AiFillDelete } from 'react-icons/ai'
 
@@ -25,6 +25,8 @@ const MealType = ( {type}  ) => {
 
   const editMealHandler = (id) => dispatch(mealToEdit(id))
 
+  const onClickHandler = (type) => dispatch(setMealType(type))
+
 
   return (
         <div className='divide-y-2 bg-white p-4 rounded-md'>
@@ -39,11 +41,11 @@ const MealType = ( {type}  ) => {
               <Link key = {meal.id} 
                 onClick = {editMealHandler.bind(null, meal.id)}
                 to = '/edit'
-                className = 'w-full flex justify-between items-center py-2 cursor-pointer text-left text-xs'
+                className = 'w-full flex justify-between items-center py-2 cursor-pointer text-left text-xs group'
                 >
                 <div className = 'flex items-center gap-2'>
-                  <img src = {meal.mealImage} className = 'h-11 w-11 rounded-full' />
-                  <div>
+                  <img src = {meal.mealImage} className = 'h-11 w-11 rounded-full group-hover:scale-110 duration-200' />
+                  <div className='group-hover:translate-x-1 duration-200'>
                     <h3>{meal.title.slice(0,30)}...</h3>
                     <p className = 'text-xs text-gray-500'> <span className='font-bold'>{meal.numOfServings}</span> x {meal.servings.size}{meal.servings.unit} 
                     <AiFillDelete 
@@ -57,7 +59,10 @@ const MealType = ( {type}  ) => {
             })
           }
   
-          <Link to = '/search' className = 'block pt-2 text-red-500 hover:text-red-300 duration-200'>
+          <Link 
+            to = '/search' 
+            onClick = {onClickHandler.bind(null,type)}
+            className = 'block pt-2 text-red-500 hover:text-red-300 duration-200'>
             Add Food
           </Link>
         </div>
