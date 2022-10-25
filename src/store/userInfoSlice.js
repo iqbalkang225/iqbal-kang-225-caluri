@@ -30,7 +30,6 @@ const userInfoSlice = createSlice({
       return {
         ...state, ...action.payload
       }
-
     },
 
     calcCalories(state) {
@@ -54,9 +53,14 @@ const userInfoSlice = createSlice({
       state.recommendedNutrientsIntake.protein = (((30 * state.caloriesRequired) / 100) / 4).toFixed()
       state.recommendedNutrientsIntake.fat = (((30 * state.caloriesRequired) / 100) / 9).toFixed()
       state.recommendedNutrientsIntake.carbohydrates = (((40 * state.caloriesRequired) / 100) / 4).toFixed()
+    },
+
+    updateUser(state,action) {
+      console.log(action.payload)
+      return {...state, ...action.payload}
     }
   }
 })
 
-export const { updateState, calcCalories, calcMacros } = userInfoSlice.actions
+export const { updateState, calcCalories, calcMacros, updateUser } = userInfoSlice.actions
 export default userInfoSlice.reducer

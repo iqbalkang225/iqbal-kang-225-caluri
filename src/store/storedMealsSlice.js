@@ -17,7 +17,6 @@ const storedMealsSlice = createSlice({
     },
 
     addMealTypeCalories(state,action) {
-      console.log(action.payload)
       state.caloriesEaten = {...state.caloriesEaten, ...action.payload}
     },
 

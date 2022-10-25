@@ -15,7 +15,7 @@ const Search = () => {
       
       <SearchForm 
         initial = {{y: '90vh'}}
-        animate = {{y: 0, scaleX: 1.125}}
+        animate = {{y: 0}}
         >
       </SearchForm> 
 

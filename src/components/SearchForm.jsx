@@ -28,7 +28,7 @@ const SearchForm = ( {initial, animate } ) => {
         onClick = {onClickHandler}
         value = {enteredMeal}
         placeholder = 'Search for a food'
-        className='rounded-full mb-2 w-4/5 mx-auto block p-2 px-4 outline-none text-black placeholder:text-xs'>
+        className='rounded-full mb-2 w-[90%] mx-auto block p-1.5 px-4 outline-none text-black placeholder:text-xs focus:w-full'>
       </motion.input>  
     </form>
   )

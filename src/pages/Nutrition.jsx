@@ -27,9 +27,9 @@ const Nutrition = () => {
       y: 0,
     },
     rotation: {
-      y: [0, -5, 0],
+      scale: 1.2,
       transition: {
-        y: {repeat: Infinity, repeatType: "reverse", duration: 0.225, },
+        rotate: {repeat: Infinity, repeatType: "reverse", duration: 0.225, },
       }
     }
   }
