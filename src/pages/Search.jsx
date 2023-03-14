@@ -23,7 +23,6 @@ const Search = () => {
 
       <div className = 'space-y-3 h-[calc(100vh-220px)] overflow-y-scroll flex flex-col'>
         
-        
         {
           isLoading ? <Loader /> :
           fetchedMeals.map(meal => {

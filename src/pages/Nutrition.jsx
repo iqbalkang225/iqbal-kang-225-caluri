@@ -4,20 +4,6 @@ import { motion } from 'framer-motion'
 
 const Nutrition = () => {
 
-  // const loadVariants = {
-  //   hidden: {
-  //     y: -100
-  //   },
-  //   visible: {
-  //     y: 0,
-  //   },
-  //   rotation: {
-  //     rotate: [0, -5, 5],
-  //     transition: {
-  //       rotate: {repeat: Infinity, repeatType: "reverse", duration: 0.225, },
-  //     }
-  //   }
-  // }
 
   const loadVariants = {
     hidden: {
