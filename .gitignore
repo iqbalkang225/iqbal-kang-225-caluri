@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-src/utilities/urls.js
 /.pnp
 .pnp.js
 
