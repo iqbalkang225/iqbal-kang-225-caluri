@@ -6,9 +6,6 @@ import { FaNutritionix } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 
 const DashboardNav = () => {
-  // const classes = `flex flex-col items-center cursor-pointer group`
-  console.log(process.env.REACT_APP_RAPID_API_KEY)
-
   return (
     <div
       className={`  bg-red-500 p-2 mb-2 text-white rounded-lg shadow-lg shadow-red-500/30 justify-center flex gap-6 `}
