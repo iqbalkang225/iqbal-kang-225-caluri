@@ -4,9 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @media screen and (min-width: 1920px) {
+    font-size: 110%;
+  }
+}
 
 .link {
-  display: flex ;
+  display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
@@ -20,9 +25,21 @@
   transform: translateY(-0.4rem) scale(1.6);
 }
 
-.breakfast { background-color: #EBB305 }
-.snack-1 { background-color: #F77316 }
-.lunch { background-color: #22C55D }
-.snack-2 { background-color: #044389 }
-.dinner { background-color: #D30C7B }
-.snack-3 { background-color: #662E9B }
+.breakfast {
+  background-color: #ebb305;
+}
+.snack-1 {
+  background-color: #f77316;
+}
+.lunch {
+  background-color: #22c55d;
+}
+.snack-2 {
+  background-color: #044389;
+}
+.dinner {
+  background-color: #d30c7b;
+}
+.snack-3 {
+  background-color: #662e9b;
+}

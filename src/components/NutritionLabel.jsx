@@ -1,22 +1,26 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-const NutritionLabel = ( {numOfServings, slice, type} ) => {
+const NutritionLabel = ({ numOfServings, slice, type }) => {
+  const {
+    servings: { number, size, unit },
+    nutrition,
+  } = useSelector((store) => store[slice][type]);
 
-  const {servings: {number, size, unit}, nutrition} = useSelector(store => store[slice][type])
+  const { nutrients, calories } = nutrition;
 
-  const { nutrients, calories } = nutrition
-
-  if(!nutrients) return
-  if(!calories) return
+  if (!nutrients) return;
+  if (!calories) return;
 
   return (
-    <div className='text-xs p-4'>
+    <div className='text-xs 2xl:text-lg 3xl:text-2xl p-4'>
       <h2 className='text-4xl font-extrabold border-b-2'>Nutrition Facts</h2>
       <p> {number} serving(s) per container</p>
       <div className='flex justify-between font-extrabold border-b-[14px] border-black mb-2'>
         <h3>Serving Size</h3>
-        <h3>{size} {unit}</h3>
+        <h3>
+          {size} {unit}
+        </h3>
       </div>
       <p className=' font-bold'>Amount per serving</p>
       <div className='flex justify-between font-bold text-4xl border-b-8 border-black'>
@@ -28,27 +32,31 @@ const NutritionLabel = ( {numOfServings, slice, type} ) => {
         <p className='font-extrabold '>% Daily Value *</p>
       </div>
 
-      {
-        nutrients.map((nutrient, index) => {
-          if(nutrient.name === 'Calories') return
-          const { name, amount, unit, percentOfDailyNeeds } = nutrient
-          return (
-            <div key = {index} className = 'flex justify-between  border-t-2 py-1'>
-              <p> 
-                <span 
-                  className={`font-bold ${nutrient.name === 'Saturated Fat' && 'ml-6'} ${nutrient.name === 'Trans Fat' && 'ml-6'}`}> 
-                    {name} </span> {amount * numOfServings}{unit}</p>
-              <p className='font-bold'> {percentOfDailyNeeds}% </p>
-            </div>
-          )
-        })
-      }
-
+      {nutrients.map((nutrient, index) => {
+        if (nutrient.name === 'Calories') return;
+        const { name, amount, unit, percentOfDailyNeeds } = nutrient;
+        return (
+          <div key={index} className='flex justify-between  border-t-2 py-1'>
+            <p>
+              <span
+                className={`font-bold ${nutrient.name === 'Saturated Fat' && 'ml-6'} ${
+                  nutrient.name === 'Trans Fat' && 'ml-6'
+                }`}
+              >
+                {name}
+              </span>
+              {amount * numOfServings}
+              {unit}
+            </p>
+            <p className='font-bold'> {percentOfDailyNeeds}% </p>
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default NutritionLabel
+export default NutritionLabel;
 
 // <div className = 'flex justify-between  border-t-2 py-1'>
 // <p> <span className='font-bold'>Total Fat</span>  {nutrients[4].amount}g</p>
