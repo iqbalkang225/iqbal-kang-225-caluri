@@ -6,7 +6,7 @@ const Diary = () => {
   const { caloriesRequired } = useSelector((store) => store.userInfoSlice);
   const { totalCalories } = useSelector((store) => store.storedMealsSlice.caloriesEaten);
 
-  const outerContainerClasses = 'text-black text-sm 2xl:text-lg 3xl:text-2xl h-[calc(100vh-140px)] overflow-y-scroll';
+  const outerContainerClasses = 'text-black text-sm 2xl:text-lg 3xl:text-2xl overflow-y-scroll';
   const caloriesUpperTextClasses = 'text-sm 2xl:text-lg 3xl:text-2xl';
   const caloriesBottomTextClasses = 'text-xs 2xl:text-lg 3xl:text-2xl text-gray-500';
   const seperatorsClasses = 'flex flex-col items-center';
