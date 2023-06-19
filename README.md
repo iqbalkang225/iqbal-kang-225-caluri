@@ -29,11 +29,13 @@ Technologies used in the project:
 
 <h2>Project Screenshots</h2>
 
-<img src="https://res.cloudinary.com/dydbhumso/image/upload/v1685742503/personalizedtracking_jxa860.png" alt="project-screenshot" width="800" height="450/">
+<img src="https://caluri-links.s3.us-west-1.amazonaws.com/personalizedtracking.png" alt="project-screenshot" width="800">
 
-<img src="https://res.cloudinary.com/dydbhumso/image/upload/v1685742505/groupmeals_bcpatg.png" alt="project-screenshot" width="800" height="450/">
+<img src="https://caluri-links.s3.us-west-1.amazonaws.com/groupmeals.png" alt="project-screenshot" width="800" >
 
-<img src="https://res.cloudinary.com/dydbhumso/image/upload/v1685742503/trackmacros_tqo4em.png" alt="project-screenshot" width="800" height="450/">
+<img src="https://caluri-links.s3.us-west-1.amazonaws.com/trackmacros.png" alt="project-screenshot" width="800" >
+
+<img src="https://caluri-links.s3.us-west-1.amazonaws.com/updateinfo.png" alt="project-screenshot" width="800" >
 
 <h2>Conclusion</h2>
 While working on this project I faced some obstacles which allowed me to dive deeper into the complexities of web development and broaden my skill set. With this project I learnt creating reusable react components and manage the app state. Through this project, I gained a better understanding of Single Page Application development.
