@@ -11,17 +11,6 @@ This is a front-end application designed to provide a practical learning experie
 <h2>🚀 Hosted At</h2>
 
 [https://iqbal-kang-225-caluri.vercel.app/info](https://iqbal-kang-225-caluri.vercel.app/info)
-
-  
-<h2>🧐 Features</h2>
-
-Here're some of the project's best features:
-
-*   personalized tracking
-*   track macros
-*   group meals
-
-  
   
 <h2>💻 Built with</h2>
 
@@ -30,6 +19,14 @@ Technologies used in the project:
 *   Tailwind for efficient and scalable styling
 *   React for the front-end user interface
 *   Redux store for states management
+
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   personalized tracking
+*   track macros
+*   group meals
 
 <h2>Project Screenshots</h2>
 
